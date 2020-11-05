@@ -26,7 +26,6 @@ ADD ./src/ /app
 COPY requirements.txt ./
 COPY ./src/manage.py ./
 COPY ./src/settings.py ./
-RUN python manage.py migrate djangocms_modules 
 
 
 ####################################################
@@ -37,9 +36,8 @@ RUN pip install -r requirements.txt
 RUN pip install pipenv
 RUN pipenv install psycopg2-binary
 RUN pip install djangocms-modules
-RUN pip install --no-cache-dir djangocms-installer
-RUN mkdir /usr/src/app/mysite
-WORKDIR /usr/src/app/mysite
+RUN python manage.py migrate 
+#RUN pip install --no-cache-dir djangocms-installer
 #RUN python manage.py migrate djangocms_modules 
 #RUN python manage.py loaddata data.json
 
@@ -52,5 +50,5 @@ EXPOSE 8000
 #RUN python manage.py migrate djangocms_modules 
 #RUN python manage.py loaddata data.json
 
-CMD djangocms -f -p . mysite
+#CMD djangocms -f -p . mysite
 CMD python manage.py runserver 0.0.0.0:8000
