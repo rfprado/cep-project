@@ -1,2 +1,2 @@
 # cep-project
-Projeto CEP Bradoo
+Projeto CEP - Django CMS
