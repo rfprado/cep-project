@@ -25,7 +25,7 @@ ADD ./src/ /app
 
 COPY requirements.txt ./
 COPY ./src/manage.py ./
-COPY ./src/settings.py ./
+#COPY ./src/settings.py ./
 
 
 ####################################################
@@ -33,11 +33,11 @@ COPY ./src/settings.py ./
 ####################################################
 
 RUN pip install -r requirements.txt
-RUN pip install pipenv
-RUN pipenv install psycopg2-binary
+#RUN pip install pipenv
+RUN pip install psycopg2-binary
 RUN pip install djangocms-modules
-RUN python manage.py migrate 
-#RUN pip install --no-cache-dir djangocms-installer
+#RUN python manage.py migrate 
+RUN pip install --no-cache-dir djangocms-installer
 #RUN python manage.py migrate djangocms_modules 
 #RUN python manage.py loaddata data.json
 
