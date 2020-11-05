@@ -1,0 +1,25 @@
+version: '3.5'
+services:
+  db:
+    container_name: db
+    image: postgres:10
+    ports:
+      - "8065:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - odoo-db-epson-data:/var/lib/postgresql/data/pgdata
+    networks:
+      - backend
+    restart: always
+volumes:
+  odoo-db-epson-data:
+    external:
+      name: odoo-db-epson-data
+networks:
+  backend:
+    name: backend
+
