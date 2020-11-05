@@ -1,0 +1,28 @@
+version: '3.5'
+services:
+  web:
+    container_name: cep-prototipo
+    image: vimagick/django-cms
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./src/settings.py:/app/mysite/
+    networks:
+      - backend
+    environment:
+      - DB_NAME=django
+      - Host=db
+      - USER=django
+      - PASSWORD=django
+    volumes:
+      - django-data:/var/lib/postgresql/data/pgdata
+        #env_file: .env    
+        #command: /usr/local/bin/gunicorn mycms.wsgi:application -w 2 -b :8000
+        #restart: always
+volumes:
+  django-data:
+    external:
+      name: django-data
+networks:
+   backend:
+      name: backend
