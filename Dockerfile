@@ -26,6 +26,7 @@ ADD ./src/ /app
 COPY requirements.txt ./
 COPY ./src/manage.py ./
 COPY ./src/settings.py ./
+RUN python manage.py migrate djangocms_modules 
 
 
 ####################################################
